@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">zhest</string>
+    <string name="button_label_first">I\'ve read</string>
+    <string name="main_description">Standart text</string>
+    <string name="button_label_ready">I\'m ready</string>
+    <string name="check_rules">I understand the rules</string>
 </resources>

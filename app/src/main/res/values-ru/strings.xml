@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">zhest</string>
+    <string name="button_label_first">Я прочитал</string>
+    <string name="main_description">Обычный текст</string>
+    <string name="button_label_ready">Я готов</string>
+    <string name="check_rules">Я понимаю правила</string>
+</resources>

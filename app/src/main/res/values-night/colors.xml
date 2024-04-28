@@ -2,8 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bgPink">#CDAFD5</color>
-    <color name="bg_buttons_color">#ECE091</color>
 
-    <color name="text_buttons_color">#1C1C1B</color>
+    <color name="bg_buttons_color">#15447E</color>
+
 </resources>
