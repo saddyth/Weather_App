@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="259dp"
+                app:srcCompat="@drawable/coke_logo"
+                tools:srcCompat="@drawable/coke_logo" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="259dp"
+                app:srcCompat="@drawable/coke_logo"
+                tools:srcCompat="@drawable/coke_logo" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="259dp"
+                app:srcCompat="@drawable/coke_logo"
+                tools:srcCompat="@drawable/coke_logo" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="это условие, обязательно прочитайте меня"
+                android:textColor="#3C6ECD"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:text="Прочитал условие" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/startButton"
+                    android:layout_width="155dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Я готов" />
+
+                <Button
+                    android:id="@+id/endButton"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:text="Я прочитал" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
