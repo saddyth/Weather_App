@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_main)
+
         val view = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -57,5 +58,10 @@ class MainActivity : AppCompatActivity() {
                 endButton.isEnabled = true
             }
         }
+    }
+
+
+    companion object {
+        const val BASE_TAG = "### "
     }
 }
