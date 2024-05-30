@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
                 android:text="@string/main_description"
-                android:textColor="#3C6ECD"
+                android:textColor="@color/textColor"
                 android:textSize="@dimen/default_textSize" />
 
             <CheckBox
@@ -50,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/default_padding"
                 android:layout_height="160dp"
+                android:textColor="@color/textColor"
                 android:textSize="@dimen/default_textSize"
                 android:text="@string/check_rules" />
 
