@@ -1,48 +1,63 @@
 package ru.polisha.zhest
-
+import kotlinx.serialization.Serializable
+@Serializable
 data class Weather(
-    val consolidated_weather: List<ConsolidatedWeather>,
-    val time: String,
-    val sun_rise: String,
-    val sun_set: String,
-    val timezone_name: String,
-    val parent: Parent,
-    val sources: List<Source>,
-    val title: String,
-    val location_type: String,
-    val woeid: Int,
-    val latt_long: String,
-    val timezone: String
-)
-
-data class Source(
-    val title: String,
-    val slug: String,
-    val url: String,
-    val crawl_rate: Int
-)
-
-data class ConsolidatedWeather(
+    val coord: Coord,
+    val weather: List<WeatherData>,
+    val base: String,
+    val main: Main,
+    val visibility: Int,
+    val wind: Wind,
+    val clouds: Clouds,
+    val dt: Long,
+    val sys: Sys,
+    val timezone: Int,
     val id: Long,
-    val weather_state_name: String,
-    val weather_state_abbr: String,
-    val wind_direction_compass: String,
-    val created: String,
-    val applicable_date: String,
-    val min_temp: Double,
-    val max_temp: Double,
-    val the_temp: Double,
-    val wind_speed: Double,
-    val wind_direction: Double,
-    val air_pressure: Double,
-    val humidity: Int,
-    val visibility: Double,
-    val predictability: Int
+    val name: String,
+    val cod: Int
 )
 
-data class Parent(
-    val title: String,
-    val location_type: String,
-    val woeid: Int,
-    val latt_long: String
+@Serializable
+data class Coord(
+    val lon: Double,
+    val lat: Double
+)
+
+@Serializable
+data class WeatherData(
+    val id: Long,
+    val main: String,
+    val description: String,
+    val icon: String
+)
+
+@Serializable
+data class Main(
+    val temp: Double,
+    val feels_like: Double,
+    val temp_min: Double,
+    val temp_max: Double,
+    val pressure: Int,
+    val humidity: Int
+)
+
+@Serializable
+data class Wind(
+    val speed: Double,
+    val deg: Int
+
+)
+
+@Serializable
+data class Clouds(
+    val all: Int
+)
+
+@Serializable
+data class Sys(
+    val type: Int,
+    val id: Int,
+    val country: String,
+    val sunrise: Int,
+    val sunset: Int
 )
