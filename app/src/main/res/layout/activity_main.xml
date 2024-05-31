@@ -24,15 +24,48 @@
             android:scrollbars="vertical">
 
             <TextView
-                android:id="@+id/textViewCoord"
+                android:id="@+id/textViewName"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
                 android:text="@string/main_description"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 android:textSize="@dimen/default_textSize" />
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="Temperature: "
+                />
 
+            <TextView
+                android:id="@+id/windSpeedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temperatureTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="Wind Speed: "
+                />
+
+            <TextView
+                android:id="@+id/weatherDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/windSpeedTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="Weather: "
+                />
 
         </LinearLayout>
     </ScrollView>

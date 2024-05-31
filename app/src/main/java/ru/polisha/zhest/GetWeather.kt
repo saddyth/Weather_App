@@ -32,6 +32,7 @@ class WeatherViewModel : ViewModel() {
             }
             val responseBody: String = client.get(SF_WEATHER_URL).bodyAsText()
             val weather: Weather = Json.decodeFromString(responseBody)
+            print(weather.main.temp)
             weatherData.postValue(weather)
         }
     }

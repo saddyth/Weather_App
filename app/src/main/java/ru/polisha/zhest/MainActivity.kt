@@ -1,43 +1,91 @@
 package ru.polisha.zhest
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import android.util.Log
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.launch
-import androidx.activity.viewModels
-import ru.polisha.zhest.WeatherViewModel
-import androidx.lifecycle.Observer
+
+
+import kotlinx.serialization.json.Json
 class MainActivity : AppCompatActivity() {
-    private val weatherViewModel: WeatherViewModel by viewModels()
+    private lateinit var temperatureTextView: TextView
+    private lateinit var windSpeedTextView: TextView
+    private lateinit var weatherDescriptionTextView: TextView
+    private lateinit var textViewName: TextView
+
+    val SF_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&lang=en&appid=6fedf55af13e9e1383c52b10a799ac46"
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        temperatureTextView = findViewById(R.id.temperatureTextView)
+        windSpeedTextView = findViewById(R.id.windSpeedTextView)
+        weatherDescriptionTextView = findViewById(R.id.weatherDescriptionTextView)
+        textViewName = findViewById(R.id.textViewName)
 
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
-        val textViewCoord = findViewById<TextView>(R.id.textViewCoord)
-        weatherViewModel.weatherData.observe(this, Observer { weather ->
-            weather?.let {
-                // Обновляем UI при получении данных
-                textViewCoord.text = "Coordinates: ${it.coord.lon}, ${it.coord.lat}"
-                // Обновите другие элементы интерфейса
+        // Инициируем загрузку данных погоды
+        fetchWeather()
+    }
+
+    private fun fetchWeather() {
+        print("ok")
+        lifecycleScope.launch {
+            val client = HttpClient(Android) {
+                install(ContentNegotiation) {
+                    json()
+                }
             }
-        })
+            try {
+                Log.d("MainActivity", "Sending HTTP request")
+                val response: String = client.get(SF_WEATHER_URL).bodyAsText()
+                Log.d("MainActivity", "Response received: $response")
+                val weather: Weather = Json.decodeFromString(response)
+                updateUI(weather)
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Error fetching weather data", e)
+            }
+        }
+    }
 
-        weatherViewModel.fetchWeather()
+    private fun updateUI(weather: Weather) {
+        Log.d("MainActivity", "Weather data updated: $weather")
+        temperatureTextView.text = "Temperature: ${weather.main.temp}°C"
+        windSpeedTextView.text = "Wind Speed: ${weather.wind.speed} m/s"
+        weatherDescriptionTextView.text = "Weather: ${weather.weather[0].description}"
+        textViewName.text = weather.name
+
+    }
+
+
+
+
+//
+//    private val weatherViewModel: WeatherViewModel by viewModels()
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//
+//            super.onCreate(savedInstanceState)
+//            setContentView(R.layout.activity_main)
+//        val textViewCoord = findViewById<TextView>(R.id.textViewCoord)
+//        weatherViewModel.weatherData.observe(this, Observer { weather ->
+//            weather?.let {
+//                // Обновляем UI при получении данных
+//                textViewCoord.text = "Coordinates: ${it.coord.lon}, ${it.coord.lat}"
+//                // Обновите другие элементы интерфейса
+//            }
+//        })
+//
+//        weatherViewModel.fetchWeather()
 
 
 //        super.onCreate(savedInstanceState)
@@ -88,7 +136,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    companion object {
-        const val BASE_TAG = "### "
-    }
-}
+
