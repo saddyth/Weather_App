@@ -8,6 +8,8 @@ data class Weather(
     val main: Main,
     val visibility: Int,
     val wind: Wind,
+    val rain: Rain? = null,
+    val snow: Snow? = null,
     val clouds: Clouds,
     val dt: Long,
     val sys: Sys,
@@ -49,7 +51,16 @@ data class Wind(
     val deg: Int,
     val gust: Double? = null
 )
-
+@Serializable
+data class Rain(
+    val `1h`: Double? = null,
+    val `3h`: Double? = null
+)
+@Serializable
+data class Snow(
+    val `1h`: Double? = null,
+    val `3h`: Double? = null
+)
 @Serializable
 data class Clouds(
     val all: Int
