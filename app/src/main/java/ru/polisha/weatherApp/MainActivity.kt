@@ -7,14 +7,10 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 
 import io.ktor.client.statement.bodyAsText
@@ -23,12 +19,15 @@ import kotlinx.coroutines.launch
 
 import kotlinx.serialization.json.Json
 class MainActivity : AppCompatActivity() {
-    private lateinit var cityEditText: EditText
-    private lateinit var fetchWeatherButton: Button
-    private lateinit var textViewName: TextView
-    private lateinit var temperatureTextView: TextView
-    private lateinit var windSpeedTextView: TextView
-    private lateinit var weatherDescriptionTextView: TextView
+    val cityEditText = findViewById<TextView>(R.id.cityEditText)
+    val fetchWeatherButton = findViewById<Button>(R.id.fetchWeatherButton)
+    val textViewName = findViewById<TextView>(R.id.textViewName)
+    val temperatureTextView = findViewById<TextView>(R.id.temperatureTextView)
+    val windSpeedTextView = findViewById<TextView>(R.id.windSpeedTextView)
+    val weatherDescriptionTextView = findViewById<TextView>(R.id.weatherTextView)
+    val humidityTextView = findViewById<TextView>(R.id.humidityTextView)
+    val feelsLikeTextView = findViewById<TextView>(R.id.feelsLikeTextView)
+
 
     private val client = HttpClient(Android) {
         install(ContentNegotiation) {
@@ -40,12 +39,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        cityEditText = findViewById(R.id.cityEditText)
-        fetchWeatherButton = findViewById(R.id.fetchWeatherButton)
-        textViewName = findViewById(R.id.textViewName)
-        temperatureTextView = findViewById(R.id.temperatureTextView)
-        windSpeedTextView = findViewById(R.id.windSpeedTextView)
-        weatherDescriptionTextView = findViewById(R.id.weatherDescriptionTextView)
+
 
         fetchWeatherButton.setOnClickListener {
             val cityName = cityEditText.text.toString()
@@ -66,7 +60,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_LONG).show()
                 Log.e("MainActivity", "Error", e)
 
-//                e.printStackTrace()
             }
         }
     }
@@ -79,8 +72,10 @@ class MainActivity : AppCompatActivity() {
     private fun updateUI(weather: Weather) {
         textViewName.text = "City: ${weather.name}"
         temperatureTextView.text = "Temperature: ${weather.main.temp}°C"
+        feelsLikeTextView.text = "Feels like: ${weather.main.feels_like}°C"
         windSpeedTextView.text = "Wind Speed: ${weather.wind.speed} m/s"
-        weatherDescriptionTextView.text = "Weather: ${weather.weather[0].description.capitalize()}"
+        weatherDescriptionTextView.text = "Weather: ${weather.weather[0].description}"
+        humidityTextView.text = "Humidity: ${weather.main.humidity}%"
     }
 
     override fun onDestroy() {
