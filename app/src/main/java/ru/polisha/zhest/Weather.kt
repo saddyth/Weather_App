@@ -38,14 +38,16 @@ data class Main(
     val temp_min: Double,
     val temp_max: Double,
     val pressure: Int,
-    val humidity: Int
+    val humidity: Int,
+    val sea_level: Int? = null,
+    val grnd_level: Int? = null
 )
 
 @Serializable
 data class Wind(
     val speed: Double,
     val deg: Int,
-    val gust: Double?
+    val gust: Double? = null
 )
 
 @Serializable

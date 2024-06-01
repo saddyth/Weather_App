@@ -2,11 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/bgPink"
+
     android:id="@+id/main"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#ECEFF1">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,54 +21,74 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:isScrollContainer="true"
-            android:orientation="vertical"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weather App"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/cityEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter city name"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/fetchWeatherButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@color/black"
+                android:backgroundTint="#3F51B5"
+                android:padding="12dp"
+                android:text="Get Weather"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_padding"
-                android:text="@string/main_description"
-                android:textColor="@color/black"
-                android:textSize="@dimen/default_textSize" />
+                android:layout_marginBottom="8dp"
+                android:text="City: "
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
             <TextView
                 android:id="@+id/temperatureTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"
                 android:text="Temperature: "
-                />
+                android:textColor="#000000"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/windSpeedTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/temperatureTextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
+                android:layout_marginBottom="8dp"
                 android:text="Wind Speed: "
-                />
+                android:textColor="#000000"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/weatherDescriptionTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/windSpeedTextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
                 android:text="Weather: "
-                />
+                android:textColor="#000000"
+                android:textSize="18sp"/>
 
         </LinearLayout>
     </ScrollView>
