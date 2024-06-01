@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private val client = HttpClient(Android) {
         install(ContentNegotiation) {
-            json()
+            json(Json { ignoreUnknownKeys = true })
         }
     }
 
@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun getWeatherData(city: String): Weather {
         val response: String = client.get("https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&lang=en&appid=6fedf55af13e9e1383c52b10a799ac46").bodyAsText()
+        print(response)
         return Json.decodeFromString(response)
     }
 
